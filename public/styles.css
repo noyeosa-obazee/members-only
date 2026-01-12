@@ -1,0 +1,107 @@
+/* style.css - Option 1: Dark Mode */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Patrick Hand", cursive;
+}
+
+body {
+  background-color: #0f0f10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #e0e0e0;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.form-box {
+  background-color: #18181b;
+  padding: 50px 40px;
+  border: 1px solid #333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: #fff;
+  border-bottom: 2px solid #00d4ff;
+  display: inline-block;
+  padding-bottom: 10px;
+
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.input-group {
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+
+  font-size: 0.8rem;
+
+  letter-spacing: 1px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  background-color: #0f0f10;
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+}
+
+.btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #00d4ff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #00b8dd;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.footer-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.footer-link a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: bold;
+}

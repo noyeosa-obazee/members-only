@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up - Members Only</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <h2>Create Account</h2>
+        <form action="/signup" method="POST">
+          <div class="input-group">
+            <label for="fullname">Full Name</label>
+            <input
+              type="text"
+              id="fullname"
+              name="full_name"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="johndoe123"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="input-group">
+            <label for="confirm">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm"
+              name="confirmPassword"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <div class="footer-link">
+          Already a member? <a href="/login">Log in here</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
