@@ -1,17 +1,32 @@
 const pool = require("./pool");
+const bcrypt = require("bcryptjs");
 
 const getUserByUsername = async (username) => {
-  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
-    username,
-  ]);
+  const { rows } = await pool.query(
+    "SELECT * FROM mo_users WHERE username = $1",
+    [username]
+  );
   return rows[0];
 };
 
 const getUserById = async (userid) => {
-  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [
+  const { rows } = await pool.query("SELECT * FROM mo_users WHERE id = $1", [
     userid,
   ]);
   return rows[0];
 };
 
-module.exports = { getUserByUsername, getUserById };
+const createNewUser = async (user) => {
+  const hashedPassword = await bcrypt.hash(user.password, 10);
+  await pool.query(
+    "INSERT INTO mo_users (full_name,username,password) VALUES ($1, $2, $3)",
+    [user.fullname, user.username, hashedPassword]
+  );
+};
+
+const getAllPosts = async () => {
+  const { rows } = await pool.query("SELECT * FROM mo_posts");
+
+  return rows;
+};
+module.exports = { getUserByUsername, getUserById, createNewUser, getAllPosts };

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Members Only - Secrets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">MEMBERS ONLY</div>
+      <div class="nav-links">
+        <% if (user) { %>
+        <span>Hello, <%= user.username %></span>
+        <a href="/create-post" class="btn-nav">Write Secret</a>
+
+        <% if (!user.membership_status) { %>
+        <a href="/join-club" class="btn-nav btn-glow">Join Club</a>
+        <% } %>
+
+        <a href="/logout" class="btn-link">Log Out</a>
+        <% } else { %>
+        <a href="/login" class="btn-nav">Log In</a>
+        <% } %>
+      </div>
+    </nav>
+
+    <div class="feed-container">
+      <% if (user && !user.membership_status) { %>
+      <div class="notice-banner">
+        <i class="fas fa-lock"></i>
+        You are viewing as a guest. <a href="/join-club">Become a member</a> to
+        see who wrote these posts.
+      </div>
+      <% } %> <% posts.forEach(post => { %>
+      <div class="post-card">
+        <div class="post-header">
+          <h3 class="post-title"><%= post.title %></h3>
+          <span class="post-date"><%= post.timestamp_formatted %></span>
+        </div>
+
+        <p class="post-body"><%= post.text %></p>
+
+        <div class="post-footer">
+          <% if (user && user.membership_status) { %>
+          <span class="author-tag is-visible">
+            <i class="fas fa-user-secret"></i>
+            <%= post.author.username %>
+          </span>
+          <% } else { %>
+          <span class="author-tag is-hidden">
+            <i class="fas fa-user-lock"></i>
+            Unknown Author
+          </span>
+          <% } %>
+        </div>
+      </div>
+      <% }) %> <% if (posts.length === 0) { %>
+      <div class="empty-state">No secrets have been shared yet...</div>
+      <% } %>
+    </div>
+  </body>
+</html>
