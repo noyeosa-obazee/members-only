@@ -13,11 +13,11 @@
   </head>
   <body>
     <nav class="navbar">
-      <div class="logo">MEMBERS ONLY</div>
+      <div class="logo">CLUB M_O</div>
       <div class="nav-links">
         <% if (user) { %>
         <span>Hello, <%= user.username %></span>
-        <a href="/create-post" class="btn-nav">Write Secret</a>
+        <a href="/create-post" class="btn-nav">Make a Post</a>
 
         <% if (!user.membership_status) { %>
         <a href="/join-club" class="btn-nav btn-glow">Join Club</a>
