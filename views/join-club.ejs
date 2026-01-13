@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Join Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">CLUB M_O</div>
+      <div class="nav-links">
+        <a href="/posts" class="btn-nav">Back to Feed</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="form-box" style="text-align: center">
+        <% if (user.membership_status) { %>
+        <h2 style="text-align: center; left: 18%">Welcome</h2>
+        <p style="color: #ccc; font-size: 1.2rem; margin-bottom: 20px">
+          You are already a member of the club.
+        </p>
+        <i
+          class="fas fa-user-secret"
+          style="font-size: 4rem; color: #00d4ff"
+        ></i>
+        <br /><br />
+        <a href="/posts" class="btn" style="text-decoration: none"
+          >Return to Feed</a
+        >
+
+        <% } else { %>
+        <h2>Join the Club</h2>
+        <p style="color: #888; margin-bottom: 20px">
+          Enter the secret passcode to see who is writing these posts.
+        </p>
+
+        <% if (locals.error) { %>
+        <div
+          style="
+            color: #ff4444;
+            margin-bottom: 15px;
+            border: 1px solid #ff4444;
+            padding: 10px;
+            border-radius: 8px;
+          "
+        >
+          <%= error %>
+        </div>
+        <% } %>
+
+        <form action="/join-club" method="POST">
+          <div class="input-group">
+            <label for="passcode">Secret Passcode</label>
+            <input
+              type="password"
+              id="passcode"
+              name="passcode"
+              placeholder="******"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-glow">Attempt Entry</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

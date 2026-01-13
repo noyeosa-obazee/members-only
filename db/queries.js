@@ -25,8 +25,14 @@ const createNewUser = async (user) => {
 };
 
 const getAllPosts = async () => {
-  const { rows } = await pool.query("SELECT * FROM mo_posts");
-
+  const { rows } = await pool.query(`
+    SELECT 
+      mo_posts.*, 
+      mo_users.username 
+    FROM mo_posts 
+    JOIN mo_users ON mo_posts.user_id = mo_users.id
+    ORDER BY timestamp DESC
+  `);
   return rows;
 };
 
@@ -36,10 +42,18 @@ const createPost = async (post, userid) => {
     [post.title, post.text, userid]
   );
 };
+
+const setMemberStatus = async (userid) => {
+  await pool.query(
+    "UPDATE mo_users SET membership_status = TRUE WHERE id = $1",
+    [userid]
+  );
+};
 module.exports = {
   getUserByUsername,
   getUserById,
   createNewUser,
   getAllPosts,
   createPost,
+  setMemberStatus,
 };

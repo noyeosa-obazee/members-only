@@ -23,4 +23,7 @@ indexRoute.get(
 );
 indexRoute.post("/create-post", appController.createNewPost);
 
+indexRoute.get("/join-club", appController.getJoinClubForm);
+indexRoute.post("/join-club", appController.addToClub);
+
 module.exports = indexRoute;

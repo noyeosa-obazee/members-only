@@ -41,7 +41,9 @@
       <div class="post-card">
         <div class="post-header">
           <h3 class="post-title"><%= post.title %></h3>
+          <% if (user && user.membership_status) { %>
           <span class="post-date"><%= post.timestamp_formatted %></span>
+          <% } %>
         </div>
 
         <p class="post-body"><%= post.text %></p>
@@ -50,7 +52,7 @@
           <% if (user && user.membership_status) { %>
           <span class="author-tag is-visible">
             <i class="fas fa-user-secret"></i>
-            <%= post.author.username %>
+            <%= post.username %>
           </span>
           <% } else { %>
           <span class="author-tag is-hidden">

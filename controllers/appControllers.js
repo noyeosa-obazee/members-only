@@ -32,7 +32,6 @@ const displayAllPosts = async (req, res) => {
   const posts = rawPosts.map((post) => {
     return {
       ...post,
-
       timestamp_formatted: formatDistanceToNow(new Date(post.timestamp), {
         addSuffix: true,
       }),
@@ -103,6 +102,29 @@ const createNewPost = async (req, res) => {
   res.redirect("/posts");
 };
 
+const getJoinClubForm = (req, res) => {
+  res.render("join-club", { user: req.user });
+};
+
+const addToClub = async (req, res) => {
+  const { passcode } = req.body;
+  const secretCode = process.env.CLUB_PASSCODE;
+  if (passcode === secretCode) {
+    try {
+      await db.setMemberStatus(req.user.id);
+
+      res.redirect("/posts");
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.render("join-club", {
+      user: req.user,
+      error: "Incorrect passcode. Access denied.",
+    });
+  }
+};
+
 module.exports = {
   getSignUpForm,
   getLogInForm,
@@ -113,4 +135,6 @@ module.exports = {
   signUp,
   getCreatePostForm,
   createNewPost,
+  getJoinClubForm,
+  addToClub,
 };
