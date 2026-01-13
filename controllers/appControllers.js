@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { formatDistanceToNow } = require("date-fns");
 
 const { body, validationResult } = require("express-validator");
 const isAuth = (req, res, next) => {
@@ -26,7 +27,17 @@ const logOut = () => {
 };
 
 const displayAllPosts = async (req, res) => {
-  const posts = await db.getAllPosts();
+  const rawPosts = await db.getAllPosts();
+
+  const posts = rawPosts.map((post) => {
+    return {
+      ...post,
+
+      timestamp_formatted: formatDistanceToNow(new Date(post.timestamp), {
+        addSuffix: true,
+      }),
+    };
+  });
 
   res.render("posts", { posts: posts, user: req.user });
 };
@@ -82,6 +93,16 @@ const signUp = async (req, res) => {
   res.redirect("/login");
 };
 
+const getCreatePostForm = (req, res) => {
+  res.render("create-post-form");
+};
+
+const createNewPost = async (req, res) => {
+  const userid = req.user.id;
+  await db.createPost(req.body, userid);
+  res.redirect("/posts");
+};
+
 module.exports = {
   getSignUpForm,
   getLogInForm,
@@ -90,4 +111,6 @@ module.exports = {
   isAuth,
   validateSignUp,
   signUp,
+  getCreatePostForm,
+  createNewPost,
 };

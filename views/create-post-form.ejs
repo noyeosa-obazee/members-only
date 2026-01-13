@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">CLUB M_O</div>
+      <div class="nav-links">
+        <a href="/" class="btn-nav">Back to Feed</a>
+      </div>
+    </nav>
+
+    <div class="container logged-in">
+      <div class="form-box">
+        <h2>Make a Post</h2>
+
+        <form action="/create-post" method="POST">
+          <div class="input-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Post title..."
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="text"
+              rows="5"
+              placeholder="Type your message here..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn">Post</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

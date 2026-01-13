@@ -16,4 +16,11 @@ indexRoute.post(
   })
 );
 
+indexRoute.get(
+  "/create-post",
+  appController.isAuth,
+  appController.getCreatePostForm
+);
+indexRoute.post("/create-post", appController.createNewPost);
+
 module.exports = indexRoute;

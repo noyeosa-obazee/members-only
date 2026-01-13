@@ -29,4 +29,17 @@ const getAllPosts = async () => {
 
   return rows;
 };
-module.exports = { getUserByUsername, getUserById, createNewUser, getAllPosts };
+
+const createPost = async (post, userid) => {
+  await pool.query(
+    "INSERT INTO mo_posts (title,text,user_id) VALUES ($1,$2,$3)",
+    [post.title, post.text, userid]
+  );
+};
+module.exports = {
+  getUserByUsername,
+  getUserById,
+  createNewUser,
+  getAllPosts,
+  createPost,
+};

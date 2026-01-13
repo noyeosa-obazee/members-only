@@ -16,10 +16,20 @@ body {
   color: #e0e0e0;
 }
 
+button,
+input {
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
 .container {
   width: 100%;
   max-width: 420px;
   padding: 20px;
+}
+
+.container.logged-in {
+  margin-top: 80px;
 }
 
 .form-box {
@@ -272,4 +282,23 @@ h2 {
 }
 .btn-link:hover {
   color: #fff;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  background-color: #252529;
+  border: 2px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  outline: none;
+  resize: vertical;
+
+  transition: all 0.3s;
+}
+
+textarea:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
 }
