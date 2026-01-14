@@ -15,7 +15,12 @@
     <div class="container">
       <div class="form-box">
         <h2>Create Account</h2>
-        <% if (locals.errors) { %>
+        <% if (locals.error) { %>
+        <div class="alert-banner error">
+          <i class="fas fa-server"></i>
+          <%= error %>
+        </div>
+        <% } %> <% if (locals.errors && errors.length > 0) { %>
         <ul class="error-list">
           <% errors.forEach(function(error) { %>
           <li><%= error.msg %></li>

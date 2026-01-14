@@ -15,18 +15,24 @@
     <nav class="navbar">
       <div class="logo">CLUB M_O</div>
       <div class="nav-links">
-        <a href="/" class="btn-nav">Back to Feed</a>
+        <a href="/posts" class="btn-nav">Back to Feed</a>
       </div>
     </nav>
 
     <div class="container logged-in">
       <div class="form-box">
         <h2>Make a Post</h2>
-
+        <% if (locals.error) { %>
+        <div class="alert-banner error" style="margin-bottom: 20px">
+          <i class="fas fa-wifi"></i>
+          <%= error %>
+        </div>
+        <% } %>
         <form action="/create-post" method="POST">
           <div class="input-group">
             <label for="title">Title</label>
             <input
+              value="<%= locals.oldInput ? oldInput.title : '' %>"
               type="text"
               id="title"
               name="title"
@@ -43,7 +49,9 @@
               rows="5"
               placeholder="Type your message here..."
               required
-            ></textarea>
+            >
+<%= locals.oldInput ? oldInput.text : '' %></textarea
+            >
           </div>
 
           <button type="submit" class="btn">Post</button>

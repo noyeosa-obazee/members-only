@@ -29,6 +29,27 @@ app.use("/", indexRoute);
 app.use("/user", userRoute);
 app.use(errorHandler);
 
+// app.use((err, req, res, next) => {
+//   console.error("❌ ERROR STACK:", err.stack || err);
+
+//   let errorResponse;
+
+//   if (err.code === "ECONNREFUSED" || err.code === "ETIMEDOUT") {
+//     errorResponse =
+//       "We cannot reach our servers right now. Please check your internet connection.";
+//   } else {
+//     errorResponse = err;
+//   }
+
+//   const statusCode = err.status || 500;
+
+//   res.status(statusCode).render("500", {
+//     error: errorResponse,
+
+//     user: req.user,
+//   });
+// });
+
 app.listen(3000, (error) => {
   if (error) {
     throw error;

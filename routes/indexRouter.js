@@ -31,4 +31,13 @@ indexRoute.get(
 indexRoute.post("/join-club", appController.addToClub);
 indexRoute.post("/delete-post/:postid", appController.deletePost);
 
+indexRoute.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/login");
+  });
+});
+
 module.exports = indexRoute;

@@ -17,7 +17,7 @@ const getLogInForm = (req, res) => {
   res.render("log-in-form");
 };
 
-const logOut = () => {
+const logOut = (req, res) => {
   req.logout((err) => {
     if (err) {
       return next(err);
@@ -27,18 +27,27 @@ const logOut = () => {
 };
 
 const displayAllPosts = async (req, res) => {
-  const rawPosts = await db.getAllPosts();
+  try {
+    const rawPosts = await db.getAllPosts();
 
-  const posts = rawPosts.map((post) => {
-    return {
-      ...post,
-      timestamp_formatted: formatDistanceToNow(new Date(post.timestamp), {
-        addSuffix: true,
-      }),
-    };
-  });
+    const posts = rawPosts.map((post) => {
+      return {
+        ...post,
+        timestamp_formatted: formatDistanceToNow(new Date(post.timestamp), {
+          addSuffix: true,
+        }),
+      };
+    });
 
-  res.render("posts", { posts: posts, user: req.user });
+    res.render("posts", { posts: posts, user: req.user });
+  } catch (err) {
+    console.error(err);
+    res.render("posts", {
+      user: req.user,
+      posts: [],
+      error: "Unable to load posts from the database.",
+    });
+  }
 };
 
 const validateSignUp = [
@@ -88,8 +97,16 @@ const signUp = async (req, res) => {
     });
   }
 
-  await db.createNewUser(req.body);
-  res.redirect("/login");
+  try {
+    await db.createNewUser(req.body);
+    res.redirect("/login");
+  } catch (err) {
+    res.render("sign-up-form", {
+      error: "System Error: Unable to create account. Please try again later.",
+      errors: [],
+      oldInput: req.body,
+    });
+  }
 };
 
 const getCreatePostForm = (req, res) => {
@@ -97,9 +114,17 @@ const getCreatePostForm = (req, res) => {
 };
 
 const createNewPost = async (req, res) => {
-  const userid = req.user.id;
-  await db.createPost(req.body, userid);
-  res.redirect("/posts");
+  try {
+    const userid = req.user.id;
+    await db.createPost(req.body, userid);
+    res.redirect("/posts");
+  } catch (err) {
+    res.render("create-post-form", {
+      user: req.user,
+      error: "Network error: Could not send your post. Please try again.",
+      oldInput: req.body,
+    });
+  }
 };
 
 const getJoinClubForm = (req, res) => {
@@ -126,9 +151,13 @@ const addToClub = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  await db.deletePost(req.params.postid);
+  try {
+    await db.deletePost(req.params.postid);
 
-  res.redirect("/posts");
+    res.redirect("/posts");
+  } catch (err) {
+    next(err);
+  }
 };
 
 const errorHandler = (req, res, next) => {

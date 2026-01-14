@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>System Failure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="error-page">
+    <div class="container">
+      <div class="form-box error-box" style="border-color: #ffaa00">
+        <h1 class="glitch" data-text="500" style="color: #ffaa00">500</h1>
+
+        <p class="error-message">
+          <% if (typeof error === 'string') { %> <%= error %> <% } else if
+          (error && error.message) { %> Error: <%= error.message %> <% } else {
+          %> An unexpected error occurred. <% } %>
+        </p>
+
+        <a href="/posts" class="btn btn-glow">Go Home</a>
+      </div>
+    </div>
+  </body>
+</html>

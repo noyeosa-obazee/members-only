@@ -31,7 +31,12 @@
     </nav>
 
     <div class="feed-container">
-      <% if (user && !user.membership_status) { %>
+      <% if (locals.error) { %>
+      <div class="alert-banner error">
+        <i class="fas fa-exclamation-triangle"></i>
+        <%= error %>
+      </div>
+      <% } %> <% if (user && !user.membership_status) { %>
       <div class="notice-banner">
         <i class="fas fa-lock"></i>
         You are viewing as a guest. <a href="/join-club">Become a member</a> to
