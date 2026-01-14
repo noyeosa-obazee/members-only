@@ -24,7 +24,9 @@ app.use(
   })
 );
 app.use(passport.session());
-
+app.get("/", (req, res) => {
+  res.redirect("/posts");
+});
 app.use("/", indexRoute);
 app.use("/user", userRoute);
 app.use(errorHandler);
