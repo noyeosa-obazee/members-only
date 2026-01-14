@@ -49,6 +49,10 @@ const setMemberStatus = async (userid) => {
     [userid]
   );
 };
+
+const deletePost = async (postid) => {
+  await pool.query("DELETE FROM mo_posts WHERE post_id = $1", [postid]);
+};
 module.exports = {
   getUserByUsername,
   getUserById,
@@ -56,4 +60,5 @@ module.exports = {
   getAllPosts,
   createPost,
   setMemberStatus,
+  deletePost,
 };

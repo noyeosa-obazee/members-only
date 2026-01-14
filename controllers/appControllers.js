@@ -125,6 +125,11 @@ const addToClub = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => {
+  await db.deletePost(req.params.postid);
+
+  res.redirect("/posts");
+};
 module.exports = {
   getSignUpForm,
   getLogInForm,
@@ -137,4 +142,5 @@ module.exports = {
   createNewPost,
   getJoinClubForm,
   addToClub,
+  deletePost,
 };

@@ -302,3 +302,14 @@ textarea:focus {
   border-color: #00d4ff;
   box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
 }
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+
+  margin-left: 10px;
+  padding: 5px;
+  transition: color 0.2s;
+}

@@ -43,7 +43,6 @@
           <h3 class="post-title"><%= post.title %></h3>
           <% if (user && user.membership_status) { %>
           <span class="post-date"><%= post.timestamp_formatted %></span>
-          <% } %>
         </div>
 
         <p class="post-body"><%= post.text %></p>
@@ -59,6 +58,14 @@
             <i class="fas fa-user-lock"></i>
             Unknown Author
           </span>
+          <% } %> <% } %> <% if (user && user.is_admin) { %>
+          <form
+            action="/delete-post/<%= post.post_id %>"
+            method="POST"
+            style="display: inline"
+          >
+            <button type="submit" class="btn-delete">Delete Post</button>
+          </form>
           <% } %>
         </div>
       </div>
