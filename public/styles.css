@@ -267,6 +267,7 @@ h2 {
   color: #000;
   border: none;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .btn-glow:hover {
@@ -312,4 +313,102 @@ textarea:focus {
   margin-left: 10px;
   padding: 5px;
   transition: color 0.2s;
+}
+
+.error-page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.error-box {
+  text-align: center;
+  border-color: #ff4444;
+  box-shadow: 0 0 30px rgba(255, 68, 68, 0.2);
+}
+
+.error-box h2 {
+  color: #ff4444;
+  border-bottom: none;
+  margin-top: 10px;
+}
+
+.error-box p {
+  color: #bbb;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.glitch {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  margin: 0;
+  letter-spacing: 5px;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 #00d4ff;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 #ff4444;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(14px, 9999px, 122px, 0);
+  }
+  20% {
+    clip: rect(56px, 9999px, 15px, 0);
+  }
+  40% {
+    clip: rect(20px, 9999px, 86px, 0);
+  }
+  60% {
+    clip: rect(66px, 9999px, 102px, 0);
+  }
+  80% {
+    clip: rect(32px, 9999px, 21px, 0);
+  }
+  100% {
+    clip: rect(96px, 9999px, 63px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(120px, 9999px, 14px, 0);
+  }
+  20% {
+    clip: rect(10px, 9999px, 120px, 0);
+  }
+  40% {
+    clip: rect(85px, 9999px, 45px, 0);
+  }
+  60% {
+    clip: rect(15px, 9999px, 90px, 0);
+  }
+  80% {
+    clip: rect(65px, 9999px, 25px, 0);
+  }
+  100% {
+    clip: rect(100px, 9999px, 75px, 0);
+  }
 }

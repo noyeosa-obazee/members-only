@@ -130,6 +130,10 @@ const deletePost = async (req, res) => {
 
   res.redirect("/posts");
 };
+
+const errorHandler = (req, res, next) => {
+  res.status(404).render("404");
+};
 module.exports = {
   getSignUpForm,
   getLogInForm,
@@ -143,4 +147,5 @@ module.exports = {
   getJoinClubForm,
   addToClub,
   deletePost,
+  errorHandler,
 };

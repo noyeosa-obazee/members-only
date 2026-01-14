@@ -6,6 +6,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const db = require("./db/queries");
 const indexRoute = require("./routes/indexRouter");
 const userRoute = require("./routes/userRouter");
+const { errorHandler } = require("./controllers/appControllers");
 require("dotenv").config();
 require("./config/passport");
 
@@ -26,6 +27,7 @@ app.use(passport.session());
 
 app.use("/", indexRoute);
 app.use("/user", userRoute);
+app.use(errorHandler);
 
 app.listen(3000, (error) => {
   if (error) {
