@@ -4,16 +4,20 @@ const { Client } = require("pg");
 require("dotenv").config();
 
 const SQL = `
-CREATE TABLE mo_users (
+TRUNCATE TABLE mo_posts RESTART IDENTITY CASCADE;
+TRUNCATE TABLE mo_users RESTART IDENTITY CASCADE;
+
+CREATE TABLE IF NOT EXISTS mo_users (
     id SERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL, 
-    membership_status BOOLEAN DEFAULT FALSE
+    membership_status BOOLEAN DEFAULT FALSE,
+    is_admin BOOLEAN DEFAULT FALSE
 );
 
 
-CREATE TABLE mo_posts (
+CREATE TABLE IF NOT EXISTS mo_posts (
     post_id SERIAL PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
