@@ -2,10 +2,9 @@ const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const db = require("./db/queries");
+
 const indexRoute = require("./routes/indexRouter");
-const userRoute = require("./routes/userRouter");
+
 const { errorHandler } = require("./controllers/appControllers");
 require("dotenv").config();
 require("./config/passport");
@@ -28,7 +27,7 @@ app.get("/", (req, res) => {
   res.redirect("/posts");
 });
 app.use("/", indexRoute);
-app.use("/user", userRoute);
+
 app.use(errorHandler);
 
 app.listen(3000, (error) => {
